@@ -1,5 +1,4 @@
-import { View, Text, Image, Dimensions } from "react-native";
-import React, { useState } from "react";
+import { View, Text, Image, Dimensions } from "react-native";import React, { useState } from "react";
 import { BGImage, Logo } from "../assets";
 import { UserTextInput } from "../components";
 
@@ -13,7 +12,7 @@ const LoginScreen = () => {
       <Image
         source={BGImage}
         resizeMode="cover"
-        className="h-96"
+        className="h-80"
         style={{ width: screenWidth }}
       />
 
@@ -32,8 +31,7 @@ const LoginScreen = () => {
           <UserTextInput
             placeholder="Email"
             isPass={false}
-            setStateValue={email}
-            setStateFunction={setEmail}
+            setStateValue={setEmail}
           />
           {/* senha */}
 
