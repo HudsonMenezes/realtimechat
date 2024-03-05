@@ -1,9 +1,10 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 
 const UserTextInput = ({ placeholder, isPass, setStateValue }) => {
   const [value, setValue] = useState("");
+  const [showPass, setShowPass] = useState(false);
 
   const handleTextChanged = (text) => {
     setValue(text);
@@ -20,7 +21,19 @@ const UserTextInput = ({ placeholder, isPass, setStateValue }) => {
         placeholder={placeholder}
         value={value}
         onChange={handleTextChanged}
+        secureTextEntry={isPass && !showPass}
+        autoCapitalize="none"
       />
+
+      {isPass && (
+        <TouchableOpacity onPress={() => setShowPass(!showPass)}>
+          <MaterialIcons
+            name={`${showPass ? "visibility" : "visibility-off"}`}
+            size={24}
+            color={"#6c6c83"}
+          />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

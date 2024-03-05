@@ -1,4 +1,5 @@
-import { View, Text, Image, Dimensions } from "react-native";import React, { useState } from "react";
+import { View, Text, Image, Dimensions } from "react-native";
+import React, { useState } from "react";
 import { BGImage, Logo } from "../assets";
 import { UserTextInput } from "../components";
 
@@ -6,6 +7,7 @@ const LoginScreen = () => {
   const screenWidth = Math.round(Dimensions.get("window").width);
 
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <View className="flex-1 justify-start items-center">
@@ -34,7 +36,11 @@ const LoginScreen = () => {
             setStateValue={setEmail}
           />
           {/* senha */}
-
+          <UserTextInput
+            placeholder="Senha"
+            isPass={true}
+            setStateValue={setPassword}
+          />
           {/* botão de login */}
         </View>
       </View>
