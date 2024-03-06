@@ -1,8 +1,7 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";import React, { useLayoutEffect, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const UserTextInput = ({ placeholder, isPass, setStateValue }) => {
+const UserTextInput = ({ placeholder, isPass, setStateValue, type }) => {
   const [value, setValue] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [icon, setIcon] = useState(null);
@@ -35,6 +34,7 @@ const UserTextInput = ({ placeholder, isPass, setStateValue }) => {
         onChange={handleTextChanged}
         secureTextEntry={isPass && !showPass}
         autoCapitalize="none"
+        type={type}
       />
 
       {isPass && (

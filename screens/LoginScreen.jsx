@@ -1,4 +1,5 @@
-import { View, Text, Image, Dimensions, TouchableOpacity } from "react-native";import React, { useState } from "react";
+import { View, Text, Image, Dimensions, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 import { BGImage, Logo } from "../assets";
 import { UserTextInput } from "../components";
 import { useNavigation } from "@react-navigation/native";
@@ -36,12 +37,14 @@ const LoginScreen = () => {
             placeholder="Email"
             isPass={false}
             setStateValue={setEmail}
+            type="email"
           />
           {/* senha */}
           <UserTextInput
             placeholder="Senha"
             isPass={true}
             setStateValue={setPassword}
+            type="password"
           />
           {/* botão de login */}
           <TouchableOpacity className="w-full px-4 py-2 rounded-xl bg-primary my-3 flex items-center justify-center">
