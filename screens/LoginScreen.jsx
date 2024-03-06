@@ -1,13 +1,15 @@
-import { View, Text, Image, Dimensions } from "react-native";
-import React, { useState } from "react";
+import { View, Text, Image, Dimensions, TouchableOpacity } from "react-native";import React, { useState } from "react";
 import { BGImage, Logo } from "../assets";
 import { UserTextInput } from "../components";
+import { useNavigation } from "@react-navigation/native";
 
 const LoginScreen = () => {
   const screenWidth = Math.round(Dimensions.get("window").width);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigation = useNavigation();
 
   return (
     <View className="flex-1 justify-start items-center">
@@ -42,6 +44,22 @@ const LoginScreen = () => {
             setStateValue={setPassword}
           />
           {/* botão de login */}
+          <TouchableOpacity className="w-full px-4 py-2 rounded-xl bg-primary my-3 flex items-center justify-center">
+            <Text className="py-2 text-white text-xl font-semibold">Login</Text>
+          </TouchableOpacity>
+
+          <View className="w-full py-12 flex-row items-center justify-center space-x-2">
+            <Text className="text-base text-primaryText">
+              Não tem uma conta?
+            </Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("SignUpScreen")}
+            >
+              <Text className="text-base font-semibold text-primaryBold">
+                Registre-se aqui!
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
