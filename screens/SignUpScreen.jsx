@@ -1,12 +1,20 @@
-import { View, Text, Image, Dimensions, TouchableOpacity } from "react-native";
+import {  View,
+  Text,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React, { useState } from "react";
 import { BGImage, Logo } from "../assets";
 import { UserTextInput } from "../components";
 import { useNavigation } from "@react-navigation/native";
 import { avatars } from "../utils/supports";
 import { MaterialIcons } from "@expo/vector-icons";
+import { BlurView } from "expo-blur";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
+const screenHeight = Math.round(Dimensions.get("window").height);
 
 const SignUpScreen = () => {
   const [nomeCompleto, setNomeCompleto] = useState("");
@@ -21,13 +29,44 @@ const SignUpScreen = () => {
       <Image
         source={BGImage}
         resizeMode="cover"
-        className="h-80"
+        className="h-72"
         style={{ width: screenWidth }}
       />
 
+      <>
+        {/* lista de avatars */}
+        <View
+          className="absolute inset-0 z-10"
+          style={{ width: screenWidth, height: screenHeight }}
+        >
+          <ScrollView>
+            <BlurView
+              className="w-full h-full px-4 py-16 flex-row flex-wrap items-center justify-evenly"
+              tint="dark"
+              intensity={40}
+              // style={{ width: screenWidth, height: screenHeight }}
+              // experimentalBlurMethod="dimezisBlurView"
+            >
+              {avatars?.map((item) => (
+                <TouchableOpacity
+                  key={item._id}
+                  className="w-20 m-3 h-20 p-1 rounded-full border-2 border-primary relative"
+                >
+                  <Image
+                    source={{ uri: item?.image.asset.url }}
+                    className="w-full h-full"
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+              ))}
+            </BlurView>
+          </ScrollView>
+        </View>
+      </>
+
       {/* Main View */}
       <View className="w-full h-full bg-white rounded-tl-[90px] -mt-44 flex items-center justify-start py-6 px-6 space-y-6">
-        <Image source={Logo} className="w-16 h-16" resizeMode="contain" />
+        {/* <Image source={Logo} className="w-16 h-16" resizeMode="contain" /> */}
 
         <Text className="py-2 text-primaryText text-xl font-semibold">
           Faça parte da nossa comunidade!
